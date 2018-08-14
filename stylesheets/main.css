@@ -1,0 +1,153 @@
+/* multi line comments are preserved in the main.css file */
+/* Partials */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Variables (SASS can save variables of all data types)*/
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+
+/* Arithmetic */
+h1 {
+  font-size: 6px;
+}
+
+h2 {
+  font-size: 2px;
+}
+
+h3 {
+  font-size: 5;
+  opacity: 0.4;
+  padding-right: 3.5px;
+}
+
+h4 {
+  width: 20px;
+  width: 30px;
+  width: 12px;
+}
+
+/* If Else statements */
+h1:after {
+  content: "My font is: sans-serif.";
+}
+
+h2 {
+  padding: 25px;
+}
+
+/* Logical Operators */
+h2:after {
+  content: "var1 and var2 are false";
+}
+
+/* String Operations */
+h2:after {
+  content: "My name is: Allen Welch";
+}
+
+/* Color Concatenation */
+h1 {
+  color: #66c8ff;
+}
+
+h2 {
+  color: #ff2b5b;
+}
+
+/* & usage */
+.button:visited {
+  color: white;
+}
+
+.button:hover {
+  color: white;
+}
+
+.button:active {
+  color: white;
+}
+
+.button > span {
+  color: white;
+}
+
+.button + span {
+  color: white;
+}
+
+.button ~ span {
+  color: white;
+}
+
+.btn-primary {
+  color: white;
+}
+
+.btn-secondary {
+  color: white;
+}
+
+body.page-about .button {
+  color: white;
+}
+
+/* Interpolation */
+h2:after {
+  content: "My font is: sans-serif.";
+}
+/*# sourceMappingURL=main.css.map */

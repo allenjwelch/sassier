@@ -1,0 +1,155 @@
+// single line comments are not preserved in the main.css file
+/* multi line comments are preserved in the main.css file */
+
+/* Partials */
+// _reset.scss ( "_" tells sass not to compile this file)
+@import 'partials/_reset'; 
+
+/* Variables (SASS can save variables of all data types)*/
+$font-stack: Helvetica, sans-serif; 
+$primary-color: #333; 
+
+body {
+  font: 100% $font-stack; 
+  color: $primary-color; 
+}
+
+/* Arithmetic */
+h1 {
+  font-size: 4px + 2; 
+}
+
+h2 {
+  font-size: 4px - 2; 
+}
+
+h3 {
+  font-size: (10/2); 
+  opacity: random(4) / 5;
+  padding-right: 2px / 4px + 3px; 
+}
+
+h4 {
+  width: 3px * 5 + 5px; 
+  width: 3 * (5px + 5px); 
+  width: 3px + (6px/2) * 3; 
+}
+
+/* If Else statements */
+@mixin font-fl($font) {
+  &:after {
+    @if (type-of($font) == string) {
+      content: 'My font is: #{$font}.'; 
+    } @else {
+      content: 'Sorry, the argument #{$font} is a #{$type-of($font)}.'; 
+    }
+  }
+}
+
+h1 {
+  @include font-fl(sans-serif); 
+}
+
+$padding: 50px; 
+
+h2 {
+  @if ($padding <= 20px) {
+    padding: $padding; 
+  } @else {
+    padding: $padding / 2; 
+  }
+}
+
+/* Logical Operators */
+$var1: "foo"; 
+$var2: "bazxsd"; 
+
+@mixin font-fl2() {
+  &:after {
+    @if $var1 == 'foo' and $var2 == "bar" { // can also use 'or'
+      content: "var1 and var2 are true"; 
+    } @else {
+      content: "var1 and var2 are false"; 
+    }
+  }
+}
+
+h2 {
+  @include font-fl2(); 
+}
+
+/* String Operations */
+$first-name: "Allen";
+$last-name: "Welch"; 
+
+@mixin string-concat-name {
+  &:after {
+    content: "My name is: " + $first-name + " " + $last-name; 
+  }
+}
+
+h2 {
+  @include string-concat-name(); 
+}
+
+/* Color Concatenation */
+h1 {
+  color: rgba(70, 132, 153, 1) + rgba(32, 68, 121, 1); 
+}
+
+h2 {
+  color: #dc143c + #b0171f; 
+}
+
+/* & usage */
+
+.button {
+  &:visited {color: white; }
+  &:hover {color: white; }
+  &:active {color: white; }
+}
+
+.button {
+  & > span {color: white; }
+  & + span {color: white; }
+  & ~ span {color: white; }
+}
+
+.btn {
+  &-primary {color: white; }
+  &-secondary {color: white; }
+}
+
+.button {
+  body.page-about & {color: white; }
+}
+
+/* Interpolation */
+@mixin font-fl3($font) {
+  &:after {
+    @if (type-of($font) == string) {
+      content: "My font is: #{$font}."; 
+    } @else {
+      content: "Sorry, the argument #{$font} is a #{type-of($font)}."; 
+    }
+  }
+}
+
+h2 {
+  @include font-fl3(sans-serif); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
