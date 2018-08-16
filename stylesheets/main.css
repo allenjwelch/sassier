@@ -54,6 +54,10 @@ table {
   border-spacing: 0;
 }
 
+#main .button {
+  color: red;
+}
+
 /* Variables (SASS can save variables of all data types)*/
 body {
   font: 100% Helvetica, sans-serif;
@@ -71,7 +75,7 @@ h2 {
 
 h3 {
   font-size: 5;
-  opacity: 0.4;
+  opacity: 0.2;
   padding-right: 3.5px;
 }
 
@@ -149,5 +153,197 @@ body.page-about .button {
 /* Interpolation */
 h2:after {
   content: "My font is: sans-serif.";
+}
+
+/* Mixins */
+p {
+  font-size: 16px;
+}
+
+h1 {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+a {
+  color: blue;
+  background-color: red;
+}
+
+h4 {
+  background-color: #fc0;
+  font-size: 20px;
+}
+
+/* Mixins with Arguments */
+#main a {
+  color: white;
+}
+
+#main a:visited {
+  color: blue;
+}
+
+#main a:hover {
+  color: green;
+}
+
+#main a:active {
+  color: red;
+}
+
+p {
+  border-color: blue;
+  border-width: 1in;
+  border-style: dashed;
+}
+
+h1 {
+  border-color: blue;
+  border-width: 2in;
+  border-style: dashed;
+}
+
+p {
+  border-color: blue;
+  border-width: 1in;
+  border-style: dashed;
+}
+
+h1 {
+  border-color: blue;
+  border-width: 2in;
+  border-style: dashed;
+}
+
+.shadows {
+  -webkit-box-shadow: 0px 4px 5px #666, 2px 6px 10px #999;
+          box-shadow: 0px 4px 5px #666, 2px 6px 10px #999;
+}
+
+/* Inheritance */
+.message, .success, .error, .seriousError, .criticalError, .warning {
+  border: 1px soild #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  border-color: green;
+}
+
+.error, .seriousError, .criticalError {
+  border-color: red;
+}
+
+.warning {
+  border-color: yellow;
+}
+
+.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+
+.attention, .seriousError, .criticalError {
+  font-size: 3em;
+  background-color: #ff0;
+}
+
+.seriousError, .criticalError {
+  border-width: 3px;
+}
+
+.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+
+.seriousError, .criticalError {
+  border-width: 3px;
+}
+
+.criticalError {
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+}
+
+/* Placeholder Selectors */
+.bar, .baz {
+  color: red;
+}
+
+/* Lists and nth function */
+.stuff-1 {
+  color: #111;
+  background-color: #123;
+  border: #fff;
+}
+
+.stuff-2 {
+  color: #222;
+  background-color: #234;
+  border: #d13;
+}
+
+.stuff-3 {
+  color: #333;
+  background-color: #356;
+  border: #a245;
+}
+
+.stuff-4 {
+  color: #444;
+  background-color: #657;
+  border: #b098;
+}
+
+.stuff-5 {
+  color: #555;
+  background-color: #098;
+  border: #c65;
+}
+
+/* Maps */
+.thing {
+  content: "red #ff0000";
+}
+
+.thing {
+  content: "green #00ff00";
+}
+
+.thing {
+  content: "blue #0000ff";
+}
+
+.color-red {
+  background: #ff0000;
+}
+
+.color-green {
+  background: #00ff00;
+}
+
+.color-blue {
+  background: #0000ff;
+}
+
+/* At-Root Directive */
+.btn {
+  background: #ededed;
+  border: 1px solid black;
+  color: #555;
+  font-family: Arial;
+  font-size: 1em;
+}
+
+.removeParent {
+  text-decoration: none;
 }
 /*# sourceMappingURL=main.css.map */

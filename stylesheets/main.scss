@@ -5,6 +5,10 @@
 // _reset.scss ( "_" tells sass not to compile this file)
 @import 'partials/_reset'; 
 
+#main {
+  @import 'partials/_buttons'; 
+}
+
 /* Variables (SASS can save variables of all data types)*/
 $font-stack: Helvetica, sans-serif; 
 $primary-color: #333; 
@@ -139,9 +143,230 @@ h2 {
   @include font-fl3(sans-serif); 
 }
 
+/* Mixins */
+$font-base: 16px; 
 
+@mixin sample {
+  font-size: $font-base; 
+}
 
+@mixin large-text {
+  font: {
+    family: Arial; 
+    size: 20px; 
+    weight: bold; 
+  }
 
+  color: #ff0000; 
+}
+
+p {
+  @include sample; 
+}
+
+h1 {
+  @include large-text(); 
+}
+
+@mixin silly-links {
+  a {
+    color: blue; 
+    background-color: red; 
+  }
+}
+
+@include silly-links(); 
+
+@mixin compound {
+  @include highlighted-background; 
+  @include header-text; 
+}
+
+@mixin highlighted-background { background-color: #fc0; }
+@mixin header-text { font-size: 20px; }
+
+h4 {
+  @include compound; 
+}
+
+/* Mixins with Arguments */
+$font-base: 12px; 
+
+@mixin linx ($link, $visit, $hover, $active) {
+  a {
+    color: $link; 
+    &:visited {
+      color: $visit; 
+    }
+    &:hover {
+      color: $hover; 
+    }
+    &:active {
+      color: $active; 
+    }
+  }
+}
+
+#main {
+  @include linx(white, blue, green, red); 
+}
+
+@mixin sexy-border($color, $width: 1in) { //sets default value for width if none is specified
+  border: {
+    color: $color; 
+    width: $width; 
+    style: dashed; 
+  }
+}
+
+p { @include sexy-border(blue); }
+h1 { @include sexy-border(blue, 2in); }
+
+p { @include sexy-border($color: blue); }
+h1 { @include sexy-border($color: blue, $width: 2in); }
+
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows; 
+}
+
+.shadows {
+  @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999); 
+}
+
+/* Inheritance */
+.message {
+  border: 1px soild #ccc;
+  padding: 10px; 
+  color: #333;  
+}
+
+.success {
+  @extend .message; 
+  border-color: green; 
+}
+
+.error {
+  @extend .message; 
+  border-color: red; 
+}
+
+.warning {
+  @extend .message; 
+  border-color: yellow; 
+}
+
+// Multiple Extends
+.error {
+  border: 1px #f00; 
+  background-color: #fdd; 
+}
+
+.attention {
+  font-size: 3em; 
+  background-color: #ff0; 
+}
+
+.seriousError {
+  @extend .error; 
+  @extend .attention; 
+  border-width: 3px; 
+}
+
+//Chaining Extends
+.error {
+  border: 1px #f00; 
+  background-color: #fdd; 
+}
+
+.seriousError {
+  @extend .error; 
+  border-width: 3px; 
+}
+
+.criticalError {
+  @extend.seriousError; 
+  position: fixed; 
+  top: 10%; 
+  bottom: 10%; 
+  left: 10%; 
+  right: 10%; 
+}
+
+/* Placeholder Selectors */
+// better than using mixins because calling a mixin will actually compile the code seperately and will end up with repeating code
+// mixins are better when using arguments
+%foo { // does not get compiled unless called upon using @extend
+  color: red; 
+}
+
+.bar {
+  @extend %foo;
+}
+
+.baz {
+  @extend %foo;
+}
+
+/* Lists and nth function */
+// variables with multiple values similar to arrays
+
+// comma seperated
+$font-list: "Arial", "Helvetica", "Lato"; 
+
+// space seperated
+$pad-list: 10px 8px 12px; 
+
+// multi-list
+$multi-list: 'Roboto', 15px 1.3em; 
+
+$colors-list: #111 #222 #333 #444 #555; 
+$background-colors-list: #123 #234 #356 #657 #098; 
+$border-colors-list: #fff #d13 #a245 #b098 #c65; 
+
+@each $current-color in $colors-list {
+  $i: index($colors-list, $current-color); 
+  .stuff-#{$i} {
+    color: $current-color; 
+    background-color: nth($background-colors-list, $i); 
+    border: nth($border-colors-list, $i); 
+  }
+}
+
+/* Maps */ 
+$primary-colors: (
+  "red": #ff0000, 
+  "green": #00ff00, 
+  "blue": #0000ff
+); 
+
+@each $color in $primary-colors {
+  .thing {
+    content: "#{$color}"; 
+  }
+}
+
+@each $color-name, $color-code in $primary-colors {
+  .color-#{$color-name} {
+    background: $color-code;  
+  }
+}
+
+/* At-Root Directive */
+//removes parent selector from nested code
+.btn {
+  background: #ededed; 
+  border: 1px solid black; 
+  color: #555; 
+
+  font: {
+    family: Arial; 
+    size: 1em; 
+  }
+
+  @at-root .removeParent {
+    text-decoration: none; 
+  }
+}
 
 
 
