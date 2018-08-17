@@ -368,13 +368,148 @@ $primary-colors: (
   }
 }
 
+/* Functions */
+$main-color: #ddff00; 
+$darker-color: darken($main-color, 20%); 
+$lighter-color: lighten($main-color, 20%); 
+$opaque-color: opacify($main-color, 0.5); 
+$transparent-color: transparentize($main-color, 0.3); 
 
+$list: b, c, d, e, f; 
+$new-list: prepend($list, a); // a, b, c, d, e, f
 
+$list: a, b, c, d z, e, f; 
+$first-index: index($list, a); // 1
+$last-index: last-index($list, a); // 6
+$last-index: last-index($list, z); // z
 
+$list: a, b, c, d, e, f; 
+$new-list: slice($list, 3, 5); // c, d, e
 
+$list: a, b, c d e, f, g, h; 
+$new-list: to-string($list); //abcdefgh
+$new-list: to-string($list, '-'); // a-b-c-d-e-f-g-h
 
+.brand-button {
+  background: $main-color; 
+}
 
+.brand-button:hover {
+  background: $darker-color; 
+}
 
+.brand-button:visited {
+  background: $lighter-color; 
+}
 
+.modal.focus {
+  background: $opaque-color; 
+}
 
+.main-content {
+  background:$transparent-color; 
+}
 
+/* Custom Functions */
+@function my-calculation-function($some-number, $another-number) {
+  @return $some-number + $another-number; 
+}
+
+@function calc-percent($target, $container) {
+  @return ($target / $container) * 100%; 
+}
+
+.container {
+  padding: my-calculation-function(100px, 200px); 
+}
+
+.inner-container {
+  width: calc-percent(250px, 555px);
+}
+
+/*If Statements */ 
+p {
+  @if 1 + 1 == 2 {border: 1px solid black; }
+  @if 5 < 3 {border: 2px solid red; }
+}
+
+@mixin test($condition) {
+  $color: if($condition, blue, red); 
+  color: $color; 
+}
+
+.firstClass {
+  @include test(true); 
+}
+
+.secondClass {
+  @include test(false); 
+}
+
+@mixin txt($weight) {
+  color: white; 
+  @if $weight == bold { font-weight: bold; }
+}
+
+.txt1 {
+  @include txt(none); 
+}
+
+.txt2 {
+  @include txt(bold); 
+}
+
+$type: monster; 
+
+p {
+  @if $type == human {
+    color: green; 
+  } @else if $type == monster {
+    color: red; 
+  } @else {
+      color: black; 
+  }
+}
+
+/* Loops */
+@for $i from 1 through 3 {
+  .item-#{$i} {
+    width: 2em * $i;
+  }
+}
+
+@each $usr in bob, john, bill, mike {
+  .#{$usr}-avatar {
+    background-image: url('/img/#{$usr}.png'); 
+  }
+}
+
+$ppl: ( usr1: bob, usr2: john, usr3: bill, usr4: mike); 
+
+@each $key, $val in $ppl {
+  .#{$key}-picture {
+    background-image: url('/img/#{$val}.png'); 
+  }
+}
+
+$alt: alert, yellow, red; 
+
+$sub: submit, white, green; 
+
+$bck: back, blue, transparent; 
+
+@each $type, $txt, $back in $alt, $sub, $bck {
+  .#{$type}-button {
+    color: $txt; 
+    background-color: $back; 
+  }
+}
+
+$x: 1; 
+
+@while $x < 13 {
+  .col-#{$x} {
+    width: 100/12 * $x;
+  }
+  $x: $x + 1; 
+}
